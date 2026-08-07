@@ -14,16 +14,19 @@
     --dark-bg: #0d1116;
     --dark-card: #161b22;
     --dark-border: #21262d;
-    --light-bg: #f8f9fa;
+    --light-bg: #ffffff;
     --light-card: #ffffff;
+    --maxw: 1400px;            /* 본문 최대 가로폭 */
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: "Lato", "Noto Sans KR", sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.7;
+    font-size: 1.12rem;
+    line-height: 1.72;
     -webkit-font-smoothing: antialiased;
+    word-break: keep-all;          /* 한글 어절 중간 줄바꿈 방지 */
+    overflow-wrap: break-word;
   }
 
   .main-container { background-color: var(--dark-bg); color: #fff; transition: background-color .3s ease, color .3s ease; }
@@ -36,136 +39,156 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     display: flex; align-items: center; justify-content: space-between;
-    height: 60px; padding: 0 4%;
+    height: 68px; padding: 0 4%;
     background-color: rgba(13, 17, 22, 0.92); backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--dark-border);
     transition: background-color .3s ease, border-color .3s ease;
   }
-  .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 1.05rem; letter-spacing: 0.5px; color: #fff; }
+  .nav-logo { display: flex; align-items: center; gap: 14px; font-weight: 900; font-size: 1.12rem; letter-spacing: 0.5px; color: #fff; }
   .nav-logo span { color: #a879ff; }
-  .nav-lab-logo { height: 24px; width: auto; display: block; }
-  .nav-logo .divider { width: 1px; height: 20px; background: rgba(0,0,0,0.15); }
+  .nav-lab-logo { height: 34px; width: auto; display: block; }
+  .nav-logo .divider { width: 1px; height: 24px; background: rgba(0,0,0,0.15); }
   .nav-right { display: flex; align-items: center; gap: 6px; }
   .nav-links { display: flex; list-style: none; gap: 2px; }
   .nav-links a {
-    color: #fff; font-size: 0.92rem; font-weight: 700; padding: 8px 12px; border-radius: 6px;
+    color: #fff; font-size: 1rem; font-weight: 700; padding: 8px 13px; border-radius: 6px;
   }
   .nav-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 6px;
     background: transparent; color: #fff; border: 1px solid var(--dark-border);
-    border-radius: 6px; padding: 6px 12px; font-family: inherit; font-size: 0.85rem;
+    border-radius: 6px; padding: 7px 13px; font-family: inherit; font-size: 0.92rem;
     font-weight: 700; cursor: pointer; transition: border-color .2s, background .2s;
     margin-left: 8px;
   }
   .nav-btn:hover { border-color: var(--accent); }
-  .nav-btn svg { width: 16px; height: 16px; fill: currentColor; }
+  .nav-btn svg { width: 17px; height: 17px; fill: currentColor; }
 
   /* ===== Hero (Main) ===== */
   .about-section {
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
-    padding: 110px 8% 70px;
-    background:
-      radial-gradient(ellipse 60% 50% at 70% 20%, rgba(80, 0, 202, 0.28), transparent 65%),
-      radial-gradient(ellipse 50% 45% at 20% 85%, rgba(80, 0, 202, 0.18), transparent 60%),
-      var(--dark-bg);
+    padding: 128px 5% 90px;
+    background: var(--dark-bg);
     transition: background .3s ease;
   }
   .about-inner {
-    display: flex; align-items: center; gap: 60px; max-width: 980px; width: 100%;
+    display: flex; align-items: center; gap: 72px; max-width: var(--maxw); width: 100%;
     flex-wrap: wrap; justify-content: center;
   }
   .avatar {
-    width: 230px; height: 230px; border-radius: 50%; flex-shrink: 0;
+    width: 240px; height: 240px; border-radius: 50%; flex-shrink: 0;
     background: linear-gradient(145deg, #1d2430, #10151c);
-    border: 4px solid var(--accent);
+    border: 1.5px solid rgba(168, 121, 255, 0.30);
     display: flex; align-items: center; justify-content: center;
     font-size: 5rem; font-weight: 900; color: #a879ff;
-    box-shadow: 0 0 60px rgba(80, 0, 202, 0.35);
+    box-shadow: 0 0 0 10px rgba(168, 121, 255, 0.06), 0 18px 50px rgba(0, 0, 0, 0.35);
     overflow: hidden;
+    transition: box-shadow .3s ease, border-color .3s ease;
   }
   .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero-content { text-align: left; max-width: 560px; }
+  .hero-content { text-align: left; max-width: 700px; flex: 1 1 480px; min-width: 0; }
   .social-icons { display: flex; gap: 14px; margin-bottom: 14px; }
   .social-icons a, .social-icons span.pending {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border-radius: 50%;
+    width: 44px; height: 44px; border-radius: 50%;
     border: 1px solid var(--dark-border); color: #fff;
     transition: border-color .2s, transform .2s;
   }
   .social-icons a:hover { border-color: var(--accent); transform: translateY(-2px); }
   .social-icons span.pending { opacity: 0.35; cursor: default; position: relative; }
-  .social-icons svg { width: 20px; height: 20px; fill: currentColor; }
-  .hero-content h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; letter-spacing: -1px; line-height: 1.15; }
-  .hero-role { font-size: 1.2rem; font-weight: 400; margin-top: 10px; opacity: 0.92; }
-  .hero-univ { font-size: 1rem; opacity: 0.65; margin-top: 4px; }
+  .social-icons svg { width: 22px; height: 22px; fill: currentColor; }
+  .hero-content h1 { font-size: clamp(2.6rem, 5.2vw, 4rem); font-weight: 900; letter-spacing: -1px; line-height: 1.15; }
+  .hero-role { font-size: 1.32rem; font-weight: 400; margin-top: 10px; opacity: 0.92; }
+  .hero-univ { font-size: 1.08rem; opacity: 0.65; margin-top: 4px; }
 
   /* ===== Hero affiliation block ===== */
   .affiliation {
-    margin-top: 20px; padding: 18px 22px; border-radius: 12px;
-    background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border);
-    display: inline-block; text-align: left;
+    margin-top: 28px; padding: 26px 32px 24px; border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: block; width: 100%; text-align: left;
+    box-shadow: 0 10px 34px rgba(0,0,0,0.22);
   }
-  .aff-logo { height: 46px; width: auto; display: block; margin-bottom: 16px; max-width: 100%; }
-  .aff-row { display: flex; gap: 10px; font-size: 0.93rem; line-height: 1.6; }
-  .aff-row + .aff-row { margin-top: 2px; }
-  .aff-key { font-weight: 700; opacity: 0.55; min-width: 74px; flex-shrink: 0; }
-  .aff-val { opacity: 0.95; }
-  .aff-val a { text-decoration: underline; text-underline-offset: 3px; }
-  .light-mode .affiliation { background: #fff; border-color: rgba(0,0,0,0.10); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-  @media (max-width: 860px) {
-    .affiliation { text-align: left; }
-    .aff-logo { margin-left: auto; margin-right: auto; }
+  .aff-head {
+    display: flex; align-items: center; justify-content: center;
+    padding-bottom: 20px; margin-bottom: 22px;
+    border-bottom: 1px solid rgba(255,255,255,0.09);
+  }
+  .aff-logo { height: 58px; width: auto; display: block; max-width: 100%; }
+  .aff-list {
+    display: grid; grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 28px; row-gap: 15px; align-items: baseline;
+  }
+  .aff-row { display: contents; }
+  .aff-key {
+    font-size: 0.8rem; font-weight: 800; letter-spacing: 0.06em;
+    text-transform: uppercase; opacity: 0.45; white-space: nowrap;
+  }
+  .aff-val { font-size: 1.04rem; line-height: 1.55; opacity: 0.95; }
+  .aff-val a { text-decoration: none; border-bottom: 1px solid rgba(168,121,255,0.45); padding-bottom: 1px; }
+  .light-mode .affiliation { background: #fff; border-color: rgba(0,0,0,0.08); box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+  .light-mode .aff-head { border-bottom-color: rgba(0,0,0,0.08); }
+  .light-mode .aff-val a { border-bottom-color: rgba(80,0,202,0.35); }
+  @media (max-width: 640px) {
+    .affiliation { padding: 22px 20px 20px; }
+    .aff-list { display: flex; flex-direction: column; gap: 16px; }
+    .aff-row { display: block; }
+    .aff-key { display: block; margin-bottom: 3px; }
   }
 
   /* ===== Footer lab logo ===== */
-  .footer-logo { height: 40px; width: auto; display: block; margin: 0 auto 18px; }
-  .hero-interest { margin-top: 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .hero-interest .label { font-size: 0.85rem; font-weight: 700; opacity: 0.6; letter-spacing: 1px; text-transform: uppercase; }
+  .footer-logo { height: 46px; width: auto; display: block; margin: 0 auto 18px; }
+  .hero-interest { margin-top: 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .hero-interest .label { font-size: 0.82rem; font-weight: 800; opacity: 0.5; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
   .chip {
     display: inline-block; background: rgba(255,255,255,0.10);
-    border-radius: 16px; padding: 4px 14px; font-size: 0.82rem; font-weight: 700;
+    border-radius: 16px; padding: 6px 15px; font-size: 0.9rem; font-weight: 700;
     box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    white-space: nowrap;                    /* 키워드 줄바꿈 방지 */
   }
   .chip.accent { background: var(--accent-soft); }
-  .scroll-note { margin-top: 34px; font-size: 0.85rem; opacity: 0.45; }
 
   /* ===== Sections ===== */
-  .items-container { padding: 6% 10%; max-width: 1200px; margin: 0 auto; }
+  .items-container { padding: 88px 40px; max-width: var(--maxw); margin: 0 auto; }
   .items-container > h1 {
-    font-size: clamp(1.9rem, 3.5vw, 2.6rem); font-weight: 900; margin-bottom: 44px; position: relative;
+    font-size: clamp(2.1rem, 3.8vw, 2.9rem); font-weight: 900; margin-bottom: 48px; position: relative;
     display: inline-block;
   }
   .items-container > h1::after {
     content: ""; display: block; width: 56px; height: 4px; background: var(--accent);
     border-radius: 2px; margin-top: 10px;
   }
-  section:nth-of-type(even) .section-bg { background: rgba(255,255,255,0.02); }
 
   /* ===== Expertise ===== */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 26px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 28px; }
   .skill {
     background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 12px;
-    padding: 30px 26px; transition: transform .2s, box-shadow .2s, background .3s, border-color .3s;
+    padding: 32px 30px; display: flex; flex-direction: column;
+    transition: transform .2s, box-shadow .2s, background .3s, border-color .3s;
   }
   .skill:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(80,0,202,0.18); }
   .skill .icon { color: #a879ff; margin-bottom: 16px; }
-  .skill .icon svg { width: 44px; height: 44px; fill: currentColor; }
-  .skill h3 { font-size: 1.15rem; font-weight: 900; margin-bottom: 12px; }
-  .skill p { font-size: 0.93rem; opacity: 0.85; margin-bottom: 18px; }
+  .skill .icon svg { width: 48px; height: 48px; fill: currentColor; }
+  .skill h3 { font-size: 1.24rem; font-weight: 900; margin-bottom: 12px; }
+  .skill p { font-size: 1rem; opacity: 0.85; margin-bottom: 20px; flex: 1 1 auto; }
+  .skill-keywords { margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.07); }
   .flex-chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .chip-title { font-size: 0.8rem; font-weight: 700; opacity: 0.6; }
+  .chip-title {
+    display: block; font-size: 0.78rem; font-weight: 800; opacity: 0.45;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .light-mode .skill-keywords { border-top-color: rgba(0,0,0,0.07); }
   .placeholder-text { font-style: italic; opacity: 0.55; }
   .chip.placeholder { border: 1px dashed rgba(255,255,255,0.35); background: transparent; font-style: italic; opacity: 0.6; box-shadow: none; }
 
   /* ===== Timeline ===== */
-  .timeline { position: relative; max-width: 900px; margin: 0 auto; padding: 10px 0; }
+  .timeline { position: relative; max-width: 1180px; margin: 0 auto; padding: 10px 0; }
   .timeline::before {
     content: ""; position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
     width: 4px; background: rgba(255,255,255,0.08); border-radius: 2px;
   }
-  .tl-item { position: relative; width: 50%; padding: 10px 44px 34px 0; }
-  .tl-item:nth-child(even) { margin-left: 50%; padding: 10px 0 34px 44px; }
+  .tl-item { position: relative; width: 50%; padding: 10px 48px 36px 0; }
+  .tl-item:nth-child(even) { margin-left: 50%; padding: 10px 0 36px 48px; }
   .tl-dot {
     position: absolute; top: 18px; right: -22px; width: 44px; height: 44px; border-radius: 50%;
     background: var(--accent); display: flex; align-items: center; justify-content: center;
@@ -175,19 +198,20 @@
   .tl-item:nth-child(even) .tl-dot { right: auto; left: -22px; }
   .tl-dot svg { width: 20px; height: 20px; fill: #fff; }
   .tl-card {
-    background: var(--light-card); color: #272822; border-radius: 8px; padding: 20px 24px;
+    background: var(--light-card); color: #272822; border-radius: 8px; padding: 22px 28px;
     box-shadow: 0 3px 0 var(--accent), 0 8px 24px rgba(0,0,0,0.35);
   }
-  .tl-card h3 { color: #272822; font-size: 1.08rem; font-weight: 900; }
-  .tl-card h4 { color: #272822; font-size: 0.92rem; font-weight: 700; opacity: 0.75; margin-top: 2px; }
-  .tl-card p { color: #272822; font-size: 0.9rem; margin-top: 10px; opacity: 0.85; }
-  .tl-date { font-size: 0.85rem; font-weight: 700; opacity: 0.55; margin-bottom: 6px; display: block; }
+  .tl-card h3 { color: #272822; font-size: 1.18rem; font-weight: 900; white-space: nowrap; }
+  @media (max-width: 1100px) { .tl-card h3 { white-space: normal; } }
+  .tl-card h4 { color: #272822; font-size: 1rem; font-weight: 700; opacity: 0.75; margin-top: 2px; }
+  .tl-card p { color: #272822; font-size: 0.98rem; margin-top: 10px; opacity: 0.85; }
+  .tl-date { font-size: 0.92rem; font-weight: 700; opacity: 0.55; margin-bottom: 6px; display: block; }
   .tl-card.placeholder-card { background: transparent; border: 1.5px dashed rgba(255,255,255,0.3); box-shadow: none; }
   .tl-card.placeholder-card h3, .tl-card.placeholder-card p { color: #fff; opacity: 0.55; font-style: italic; }
   .tl-dot.pending { background: #2a3140; }
 
   /* ===== Projects ===== */
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 26px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 28px; }
   .project-card {
     background: var(--dark-card); border: 1.5px dashed rgba(255,255,255,0.25); border-radius: 12px;
     overflow: hidden; transition: transform .2s, border-color .3s, background .3s;
@@ -199,10 +223,10 @@
     border-bottom: 1px dashed rgba(255,255,255,0.18);
     color: rgba(255,255,255,0.35);
   }
-  .project-thumb svg { width: 44px; height: 44px; fill: currentColor; }
+  .project-thumb svg { width: 48px; height: 48px; fill: currentColor; }
   .project-body { padding: 22px 24px 26px; }
-  .project-body h3 { font-size: 1.05rem; font-weight: 900; font-style: italic; opacity: 0.6; }
-  .project-body p { font-size: 0.9rem; opacity: 0.5; font-style: italic; margin-top: 8px; }
+  .project-body h3 { font-size: 1.15rem; font-weight: 900; font-style: italic; opacity: 0.6; }
+  .project-body p { font-size: 0.98rem; opacity: 0.5; font-style: italic; margin-top: 8px; }
   /* filled (실제 내용이 있는) 프로젝트 카드 */
   .project-card.filled { border: 1px solid var(--dark-border); border-style: solid; }
   .project-card.filled:hover { box-shadow: 0 12px 36px rgba(80,0,202,0.18); }
@@ -213,26 +237,31 @@
   .project-card.filled .project-body h3 { font-style: normal; opacity: 1; }
   .project-card.filled .project-body p { font-style: normal; opacity: 0.85; }
   .project-status {
-    display: inline-block; margin-top: 14px; font-size: 0.76rem; font-weight: 700;
-    letter-spacing: 0.5px; padding: 3px 12px; border-radius: 14px;
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 16px; font-size: 0.84rem; font-weight: 700;
+    letter-spacing: 0.5px; padding: 4px 13px; border-radius: 14px;
     background: var(--accent-soft); color: #fff;
   }
+  .project-status svg { width: 13px; height: 13px; fill: currentColor; }
+  /* 완료된 항목 */
+  .project-status.done { background: rgba(22, 140, 90, 0.55); color: #fff; }
   .light-mode .project-card.filled { border-color: rgba(0,0,0,0.10); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
   .light-mode .project-card.filled .project-thumb {
     background: linear-gradient(145deg, rgba(80,0,202,0.14), rgba(80,0,202,0.04));
     border-bottom-color: rgba(0,0,0,0.08); color: var(--accent);
   }
   .light-mode .project-status { background: rgba(80,0,202,0.14); color: var(--accent); }
+  .light-mode .project-status.done { background: rgba(15, 122, 78, 0.12); color: #0f7a4e; }
 
   /* ===== Publications ===== */
   .pub-item {
     display: flex; gap: 22px; align-items: flex-start;
     background: var(--dark-card); border: 1.5px dashed rgba(255,255,255,0.25); border-radius: 12px;
-    padding: 24px 28px; max-width: 900px;
+    padding: 24px 28px; max-width: 1100px;
   }
   .pub-year { font-weight: 900; color: #a879ff; min-width: 60px; font-style: italic; opacity: 0.7; }
-  .pub-body h3 { font-size: 1.02rem; font-weight: 900; font-style: italic; opacity: 0.6; }
-  .pub-body p { font-size: 0.9rem; opacity: 0.5; font-style: italic; margin-top: 6px; }
+  .pub-body h3 { font-size: 1.1rem; font-weight: 900; font-style: italic; opacity: 0.6; }
+  .pub-body p { font-size: 0.98rem; opacity: 0.5; font-style: italic; margin-top: 6px; }
 
   /* ===== Contact ===== */
   #contact .items-container { text-align: center; display: flex; flex-direction: column; align-items: center; }
@@ -240,17 +269,17 @@
   .contact-links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 34px; }
   .contact-link {
     display: inline-flex; align-items: center; gap: 10px;
-    border: 1px solid var(--dark-border); border-radius: 8px; padding: 13px 26px;
-    font-weight: 700; font-size: 0.98rem; color: #fff; transition: border-color .2s, background .2s;
+    border: 1px solid var(--dark-border); border-radius: 8px; padding: 14px 28px;
+    font-weight: 700; font-size: 1.06rem; color: #fff; transition: border-color .2s, background .2s;
   }
   .contact-link:hover { border-color: var(--accent); background: rgba(80,0,202,0.12); }
-  .contact-link svg { width: 19px; height: 19px; fill: currentColor; }
+  .contact-link svg { width: 21px; height: 21px; fill: currentColor; }
   .contact-pending {
-    margin-top: 18px; font-size: 0.88rem; font-style: italic; opacity: 0.5;
+    margin-top: 18px; font-size: 0.95rem; font-style: italic; opacity: 0.5;
     border: 1.5px dashed rgba(255,255,255,0.3); border-radius: 8px; padding: 10px 20px;
   }
 
-  footer { text-align: center; padding: 34px 5%; font-size: 0.85rem; opacity: 0.5; border-top: 1px solid var(--dark-border); }
+  footer { text-align: center; padding: 38px 5%; font-size: 0.92rem; opacity: 0.5; border-top: 1px solid var(--dark-border); }
 
   .fade-in { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
   .fade-in.visible { opacity: 1; transform: none; }
@@ -260,16 +289,15 @@
   .light-mode p, .light-mode h1, .light-mode h2, .light-mode h3, .light-mode h4,
   .light-mode a, .light-mode label { color: #0d1116; }
   .light-mode a:hover { color: var(--accent) !important; }
-  .light-mode nav { background-color: rgba(248, 249, 250, 0.92); border-bottom-color: rgba(0,0,0,0.08); }
+  .light-mode nav { background-color: rgba(255, 255, 255, 0.92); border-bottom-color: rgba(0,0,0,0.08); }
   .light-mode .nav-logo, .light-mode .nav-links a, .light-mode .nav-btn { color: #0d1116; }
   .light-mode .nav-btn { border-color: rgba(0,0,0,0.15); }
-  .light-mode .about-section {
-    background:
-      radial-gradient(ellipse 60% 50% at 70% 20%, rgba(80, 0, 202, 0.10), transparent 65%),
-      radial-gradient(ellipse 50% 45% at 20% 85%, rgba(80, 0, 202, 0.07), transparent 60%),
-      var(--light-bg);
+  .light-mode .about-section { background: var(--light-bg); }
+  .light-mode .avatar {
+    background: linear-gradient(145deg, #ffffff, #eceef2); color: var(--accent);
+    border-color: rgba(80, 0, 202, 0.18);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.025), 0 18px 44px rgba(0, 0, 0, 0.10);
   }
-  .light-mode .avatar { background: linear-gradient(145deg, #ffffff, #eceef2); color: var(--accent); box-shadow: 0 0 60px rgba(80,0,202,0.15); }
   .light-mode .social-icons a, .light-mode .social-icons span.pending { border-color: rgba(0,0,0,0.15); color: #0d1116; }
   .light-mode .chip { background: rgba(0,0,0,0.08); color: #0d1116; box-shadow: 0 2px 4px rgba(0,0,0,0.10); }
   .light-mode .chip.accent { background: rgba(80,0,202,0.14); color: var(--accent); }
@@ -288,41 +316,97 @@
   .light-mode .contact-link { color: #0d1116; border-color: rgba(0,0,0,0.15); }
   .light-mode .contact-pending { border-color: rgba(0,0,0,0.3); }
   .light-mode footer { border-top-color: rgba(0,0,0,0.08); }
-  .light-mode section:nth-of-type(even) .section-bg { background: rgba(0,0,0,0.015); }
 
-  /* ===== Study materials ===== */
-  .study-list { display: flex; flex-direction: column; gap: 16px; max-width: 900px; }
+  /* ===== Study materials (accordion) ===== */
+  .study-list { display: flex; flex-direction: column; gap: 18px; max-width: 1100px; }
+  .study-note { max-width: 1100px; opacity: 0.75; margin: -28px 0 34px; font-size: 1.05rem; }
+
+  /* -- group (클릭해서 펼치는 단위) -- */
+  .study-group {
+    background: var(--dark-card); border: 1px solid var(--dark-border);
+    border-radius: 14px; overflow: hidden;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .study-group[data-open="true"] { border-color: rgba(80,0,202,0.35); }
+  .study-group-head {
+    width: 100%; display: flex; align-items: center; gap: 18px;
+    padding: 24px 28px; background: transparent; border: 0; cursor: pointer;
+    font-family: inherit; text-align: left; color: inherit; transition: background .2s;
+  }
+  .study-group-head:hover { background: rgba(80,0,202,0.05); }
+  .study-group-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+  .sg-chevron {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(80,0,202,0.10); color: var(--accent);
+    transition: transform .3s ease, background .2s;
+  }
+  .sg-chevron svg { width: 15px; height: 15px; fill: currentColor; }
+  .study-group[data-open="true"] .sg-chevron { transform: rotate(90deg); background: var(--accent); color: #fff; }
+  .sg-titles { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .sg-title { font-size: 1.2rem; font-weight: 900; line-height: 1.35; }
+  .sg-desc { font-size: 0.95rem; opacity: 0.6; margin-top: 2px; }
+  .sg-count {
+    flex-shrink: 0; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.02em;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(80,0,202,0.10); color: var(--accent); white-space: nowrap;
+  }
+
+  /* -- 펼쳐지는 영역 (grid 0fr -> 1fr 로 부드럽게) -- */
+  .study-group-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+  .study-group[data-open="true"] .study-group-body { grid-template-rows: 1fr; }
+  .sg-inner { overflow: hidden; min-height: 0; }
+  .sg-items {
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 6px 18px 20px; margin: 0 10px;
+    border-top: 1px solid var(--dark-border);
+  }
   .study-item {
     display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-    background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 12px;
-    padding: 20px 26px; transition: transform .2s, box-shadow .2s;
+    border-radius: 10px; padding: 16px 18px; transition: background .2s;
   }
-  .study-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(80,0,202,0.12); }
-  .study-date { font-weight: 900; color: #a879ff; min-width: 76px; font-size: 0.95rem; }
+  .study-item:hover { background: rgba(80,0,202,0.05); }
+  .study-date { font-weight: 900; color: #a879ff; min-width: 82px; font-size: 1.02rem; }
   .study-body { flex: 1; min-width: 200px; }
-  .study-body h3 { font-size: 1.02rem; font-weight: 900; }
-  .study-body p { font-size: 0.88rem; opacity: 0.7; margin-top: 4px; }
+  .study-body h3 { font-size: 1.12rem; font-weight: 900; }
+  .study-body p { font-size: 0.96rem; opacity: 0.7; margin-top: 4px; }
   .study-link {
     display: inline-flex; align-items: center; gap: 8px;
     border: 1px solid var(--dark-border); border-radius: 8px; padding: 9px 18px;
-    font-weight: 700; font-size: 0.88rem; color: #fff; transition: border-color .2s, background .2s;
+    font-weight: 700; font-size: 0.95rem; color: #fff; transition: border-color .2s, background .2s;
   }
   .study-link:hover { border-color: var(--accent); background: rgba(80,0,202,0.10); }
-  .study-link svg { width: 16px; height: 16px; fill: currentColor; }
-  .study-note { max-width: 900px; opacity: 0.75; margin: -24px 0 30px; font-size: 0.95rem; }
-  .light-mode .study-item { background: var(--light-card); border-color: rgba(0,0,0,0.10); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .study-link svg { width: 17px; height: 17px; fill: currentColor; }
+  .light-mode .study-group { background: var(--light-card); border-color: rgba(0,0,0,0.10); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .light-mode .study-group[data-open="true"] { border-color: rgba(80,0,202,0.30); }
+  .light-mode .sg-items { border-top-color: rgba(0,0,0,0.08); }
   .light-mode .study-date { color: var(--accent); }
   .light-mode .study-link { color: #0d1116; border-color: rgba(0,0,0,0.15); }
+  @media (max-width: 640px) {
+    .study-group-head { padding: 20px 18px; gap: 14px; }
+    .sg-count { display: none; }
+    .sg-items { padding: 6px 8px 16px; margin: 0 8px; }
+    .study-item { padding: 14px 10px; gap: 12px; }
+  }
 
+  @media (max-width: 1180px) {
+    .items-container { padding: 80px 32px; }
+  }
   @media (max-width: 860px) {
     .nav-links { display: none; }
+    nav { padding: 0 16px; }
+    .nav-logo { font-size: 0.98rem; gap: 10px; min-width: 0; }
+    .nav-lab-logo { height: 26px; }
+    .nav-btn { flex-shrink: 0; }
+    .aff-logo { height: 46px; }
     .timeline::before { left: 21px; }
     .tl-item, .tl-item:nth-child(even) { width: 100%; margin-left: 0; padding: 10px 0 34px 62px; }
     .tl-dot, .tl-item:nth-child(even) .tl-dot { left: 0; right: auto; }
     .about-inner { gap: 36px; text-align: center; }
-    .hero-content { text-align: center; }
+    .hero-content { text-align: center; flex-basis: auto; }
     .social-icons, .hero-interest { justify-content: center; }
-    .items-container { padding: 12% 6%; }
+    .items-container { padding: 68px 22px; }
+    .avatar { width: 200px; height: 200px; }
   }
 </style>
 </head>
@@ -331,7 +415,7 @@
 
   <nav>
     <div class="nav-logo">
-      <img class="nav-lab-logo" src="assets/idea-logo-mark.png" alt="IDEA Lab">
+      <img class="nav-lab-logo" src="assets/idea-lab-logo-nav.png" alt="한양대학교 IDEA Lab">
       <span class="divider"></span>
       Minhyeok<span>.</span>Choi
     </div>
@@ -374,22 +458,26 @@
         <p class="hero-univ" data-i18n="hero_univ">한양대학교 ERICA캠퍼스 기계공학과</p>
 
         <div class="affiliation">
-          <img class="aff-logo" src="assets/idea-lab-logo-full.png" alt="한양대학교 IDEA Lab — Intelligent Design for Engineering Applications Lab">
-          <div class="aff-row">
-            <span class="aff-key" data-i18n="aff_lab_k">소속 연구실</span>
-            <span class="aff-val" data-i18n="aff_lab_v">IDEA Lab (Intelligent Design for Engineering Applications Lab)</span>
+          <div class="aff-head">
+            <img class="aff-logo" src="assets/idea-lab-logo-full.png" alt="한양대학교 IDEA Lab — Intelligent Design for Engineering Applications Lab">
           </div>
-          <div class="aff-row">
-            <span class="aff-key" data-i18n="aff_univ_k">소속</span>
-            <span class="aff-val" data-i18n="aff_univ_v">한양대학교 ERICA캠퍼스 · 기계공학과 학부연구생</span>
-          </div>
-          <div class="aff-row">
-            <span class="aff-key" data-i18n="aff_prof_k">지도교수</span>
-            <span class="aff-val" data-i18n="aff_prof_v">양선웅 교수님</span>
-          </div>
-          <div class="aff-row">
-            <span class="aff-key" data-i18n="aff_mail_k">이메일</span>
-            <span class="aff-val"><a href="mailto:mindat@hanyang.ac.kr">mindat@hanyang.ac.kr</a></span>
+          <div class="aff-list">
+            <div class="aff-row">
+              <span class="aff-key" data-i18n="aff_lab_k">소속 연구실</span>
+              <span class="aff-val" data-i18n="aff_lab_v">IDEA Lab (Intelligent Design for Engineering Applications Lab)</span>
+            </div>
+            <div class="aff-row">
+              <span class="aff-key" data-i18n="aff_univ_k">소속</span>
+              <span class="aff-val" data-i18n="aff_univ_v">한양대학교 ERICA캠퍼스 · 기계공학과 학부연구생</span>
+            </div>
+            <div class="aff-row">
+              <span class="aff-key" data-i18n="aff_prof_k">지도교수</span>
+              <span class="aff-val" data-i18n="aff_prof_v">양선웅 교수님</span>
+            </div>
+            <div class="aff-row">
+              <span class="aff-key" data-i18n="aff_mail_k">이메일</span>
+              <span class="aff-val"><a href="mailto:mindat@hanyang.ac.kr">mindat@hanyang.ac.kr</a></span>
+            </div>
           </div>
         </div>
 
@@ -397,7 +485,6 @@
           <span class="label" data-i18n="hero_interest_label">관심 분야</span>
           <span class="chip accent" data-i18n="hero_interest_tag">방산 (국방산업)</span>
         </div>
-        <p class="scroll-note" data-i18n="hero_scroll">↓ 스크롤하여 더 알아보기</p>
       </div>
     </div>
   </div>
@@ -415,6 +502,14 @@
             <p data-i18n="tl1_desc">학사 과정 재학 중.</p>
           </div>
         </div>
+        <div class="tl-item fade-in">
+          <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M12 2 2 7v2h20V7L12 2zM4 11v7H2v2h20v-2h-2v-7h-2v7h-3v-7h-2v7H8v-7H4z"/></svg></div>
+          <div class="tl-card">
+            <span class="tl-date" data-i18n="tl2_date">2019.03 - 2022.02</span>
+            <h3 data-i18n="tl2_title">강릉고등학교</h3>
+            <p data-i18n="tl2_desc">2019년 3월 입학 · 2022년 2월 졸업.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div></section>
@@ -428,33 +523,39 @@
           <div class="icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.61 3.61 0 0 1 8.4 12c0-1.98 1.62-3.6 3.6-3.6s3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
           <h3 data-i18n="exp1_title">AI 에이전트 기반 설계 자동화</h3>
           <p data-i18n="exp1_desc">대형 언어 모델(LLM) 기반 에이전트가 설계 요구조건 해석부터 형상 제안, 검토까지의 과정을 스스로 수행하도록 하는 방법을 공부하고 있습니다. 현재 IDEA Lab에서 진행 중인 주 관심 주제입니다.</p>
-          <div class="flex-chips">
-            <span class="chip-title" data-i18n="chip_title">Keywords:</span>
-            <span class="chip accent" data-i18n="chip1a">LLM Agent</span>
-            <span class="chip" data-i18n="chip1b">설계 자동화</span>
-            <span class="chip" data-i18n="chip1c">Python</span>
+          <div class="skill-keywords">
+            <span class="chip-title" data-i18n="chip_title">Keywords</span>
+            <div class="flex-chips">
+              <span class="chip accent" data-i18n="chip1a">LLM Agent</span>
+              <span class="chip" data-i18n="chip1b">설계 자동화</span>
+              <span class="chip" data-i18n="chip1c">Python</span>
+            </div>
           </div>
         </div>
         <div class="skill fade-in">
           <div class="icon"><svg viewBox="0 0 24 24"><path d="M3.5 18.5 2 17l7.5-7.5 4 4L21 6l1.5 1.5L13.5 17l-4-4-6 5.5zM22 20H2v2h20v-2z"/></svg></div>
           <h3 data-i18n="exp2_title">AI 에이전트 기반 드론 설계</h3>
           <p data-i18n="exp2_desc">임무 요구조건에 맞는 드론의 형상과 구성을 LLM 에이전트가 제안하고 스스로 검토하도록 하는, 설계 자동화 연구를 적용하는 대상 시스템으로 드론을 다루고 있습니다.</p>
-          <div class="flex-chips">
-            <span class="chip-title" data-i18n="chip_title2">Keywords:</span>
-            <span class="chip accent" data-i18n="chip2a">LLM Agent</span>
-            <span class="chip" data-i18n="chip2b">드론 설계</span>
-            <span class="chip" data-i18n="chip2c">형상 설계</span>
+          <div class="skill-keywords">
+            <span class="chip-title" data-i18n="chip_title2">Keywords</span>
+            <div class="flex-chips">
+              <span class="chip accent" data-i18n="chip2a">LLM Agent</span>
+              <span class="chip" data-i18n="chip2b">드론 설계</span>
+              <span class="chip" data-i18n="chip2c">형상 설계</span>
+            </div>
           </div>
         </div>
         <div class="skill fade-in">
           <div class="icon"><svg viewBox="0 0 24 24"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
           <h3 data-i18n="exp3_title">기계 설계 · 해석 (CAD / CAE)</h3>
           <p data-i18n="exp3_desc">3D 모델링과 구조·유동 해석을 통해 설계안을 직접 만들고 검토하는 역량을 쌓고 있습니다.</p>
-          <div class="flex-chips">
-            <span class="chip-title" data-i18n="chip_title3">Keywords:</span>
-            <span class="chip" data-i18n="chip3a">3D CAD</span>
-            <span class="chip" data-i18n="chip3b">구조 해석</span>
-            <span class="chip" data-i18n="chip3c">유동 해석</span>
+          <div class="skill-keywords">
+            <span class="chip-title" data-i18n="chip_title3">Keywords</span>
+            <div class="flex-chips">
+              <span class="chip" data-i18n="chip3a">3D CAD</span>
+              <span class="chip" data-i18n="chip3b">구조 해석</span>
+              <span class="chip" data-i18n="chip3c">유동 해석</span>
+            </div>
           </div>
         </div>
       </div>
@@ -479,7 +580,7 @@
           <div class="project-body">
             <h3 data-i18n="pj2_title">딥러닝 기초 스터디 · 발표</h3>
             <p data-i18n="pj2_desc">『딥러닝 파이토치 교과서』를 교재로 하는 정규 스터디에 참여해 머신러닝 핵심 알고리즘, 합성곱 신경망 등의 주제를 직접 정리하고 발표했습니다. 발표 자료는 아래 스터디 자료 섹션에서 볼 수 있습니다.</p>
-            <span class="project-status" data-i18n="pj2_status">진행 중</span>
+            <span class="project-status done"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pj2_status">완료</span></span>
           </div>
         </div>
       </div>
@@ -507,7 +608,7 @@
   <section id="study"><div class="section-bg">
     <div class="items-container">
       <h1 class="fade-in" data-i18n="st_title">스터디 자료</h1>
-      <p class="study-note fade-in" data-i18n="st_note">스터디 모임에서 발표한 자료를 정리해 올립니다.</p>
+      <p class="study-note fade-in" data-i18n="st_note">스터디별로 발표 자료를 모아 두었습니다. 제목을 누르면 목록이 펼쳐집니다.</p>
       <div class="study-list" id="studyList"></div>
     </div>
   </div></section>
@@ -527,79 +628,131 @@
   </div></section>
 
   <footer>
-    <img class="footer-logo" src="assets/idea-logo-mark.png" alt="IDEA Lab — Intelligent Design for Engineering Applications Lab">
+    <img class="footer-logo" src="assets/idea-lab-logo-nav.png" alt="한양대학교 IDEA Lab — Intelligent Design for Engineering Applications Lab">
     <span data-i18n="footer">© 2026 최민혁 · Minhyeok Choi · IDEA Lab, 한양대학교 ERICA캠퍼스 기계공학과</span>
   </footer>
 </div>
 
 <script>
 // ===== 스터디 자료 목록 =====
-// ▶ 새 자료 추가 방법 (2단계):
+// 스터디(그룹) 단위로 묶여 있고, 사이트에서는 제목 버튼을 누르면 목록이 펼쳐집니다.
+//
+// ▶ 기존 스터디에 새 자료 추가 (2단계):
 //   1) PDF 파일을 assets/study/ 폴더에 넣는다.
-//      - 파일명은 영문 소문자와 하이픈(-) 사용 권장. 예: pytorch-textbook-ch06.pdf
-//   2) 아래 배열의 맨 위에 항목을 한 개 복사해서 붙여넣고 내용만 바꾼다.
+//      - 파일명은 영문 소문자와 하이픈(-) 사용 권장. 예: pytorch-textbook-ch09.pdf
+//   2) 해당 그룹 items 배열의 맨 위에 항목을 한 개 복사해 붙여넣고 내용만 바꾼다.
 //      (맨 위에 넣으면 사이트에서 최신 자료가 가장 먼저 보입니다)
-const STUDY_MATERIALS = [
+//
+// ▶ 새 스터디 자체를 추가하려면:
+//   아래 STUDY_GROUPS 배열에 { id, ko, en, items: [...] } 형태의 그룹을 하나 더 추가한다.
+//   id 는 다른 그룹과 겹치지 않는 영문 이름이면 됩니다.
+const STUDY_GROUPS = [
   {
-    date: "2026.07",
-    file: "assets/study/pytorch-textbook-ch07.pdf",
-    ko: { title: "7장 · 시계열 분석", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
-    en: { title: "Ch. 7 · Time Series Analysis", desc: "Deep Learning with PyTorch — study group presentation" }
-  },
-  {
-    date: "2026.07",
-    file: "assets/study/pytorch-textbook-ch05.pdf",
-    ko: { title: "5장 · 합성곱 신경망 1", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
-    en: { title: "Ch. 5 · Convolutional Neural Networks 1", desc: "Deep Learning with PyTorch — study group presentation" }
-  },
-  {
-    date: "2026.07",
-    file: "assets/study/pytorch-textbook-ch04.pdf",
-    ko: { title: "4장 · 딥러닝 시작", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
-    en: { title: "Ch. 4 · Getting Started with Deep Learning", desc: "Deep Learning with PyTorch — study group presentation" }
-  },
-  {
-    date: "2026.07",
-    file: "assets/study/pytorch-textbook-ch03-pca-mle.pdf",
-    ko: { title: "3장 보충 · PCA / MLE", desc: "주성분 분석과 최대우도추정 보충 발표자료" },
-    en: { title: "Ch. 3 Supplement · PCA / MLE", desc: "Supplementary presentation on PCA and maximum likelihood estimation" }
-  },
-  {
-    date: "2026.07",
-    file: "assets/study/pytorch-textbook-ch03.pdf",
-    ko: { title: "3장 · 머신러닝 핵심 알고리즘", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
-    en: { title: "Ch. 3 · Core Machine Learning Algorithms", desc: "Deep Learning with PyTorch — study group presentation" }
+    id: "dl-basics",
+    ko: { title: "딥러닝 기초", desc: "『딥러닝 파이토치 교과서』 정규 스터디" },
+    en: { title: "Deep Learning Fundamentals", desc: "\u201cDeep Learning with PyTorch\u201d regular study group" },
+    items: [
+      {
+        date: "2026.08",
+        file: "assets/study/pytorch-textbook-ch08.pdf",
+        ko: { title: "8장 · 성능 최적화", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
+        en: { title: "Ch. 8 · Performance Optimization", desc: "Deep Learning with PyTorch — study group presentation" }
+      },
+      {
+        date: "2026.07",
+        file: "assets/study/pytorch-textbook-ch07.pdf",
+        ko: { title: "7장 · 시계열 분석", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
+        en: { title: "Ch. 7 · Time Series Analysis", desc: "Deep Learning with PyTorch — study group presentation" }
+      },
+      {
+        date: "2026.07",
+        file: "assets/study/pytorch-textbook-ch05.pdf",
+        ko: { title: "5장 · 합성곱 신경망 1", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
+        en: { title: "Ch. 5 · Convolutional Neural Networks 1", desc: "Deep Learning with PyTorch — study group presentation" }
+      },
+      {
+        date: "2026.07",
+        file: "assets/study/pytorch-textbook-ch04.pdf",
+        ko: { title: "4장 · 딥러닝 시작", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
+        en: { title: "Ch. 4 · Getting Started with Deep Learning", desc: "Deep Learning with PyTorch — study group presentation" }
+      },
+      {
+        date: "2026.07",
+        file: "assets/study/pytorch-textbook-ch03-pca-mle.pdf",
+        ko: { title: "3장 보충 · PCA / MLE", desc: "주성분 분석과 최대우도추정 보충 발표자료" },
+        en: { title: "Ch. 3 Supplement · PCA / MLE", desc: "Supplementary presentation on PCA and maximum likelihood estimation" }
+      },
+      {
+        date: "2026.07",
+        file: "assets/study/pytorch-textbook-ch03.pdf",
+        ko: { title: "3장 · 머신러닝 핵심 알고리즘", desc: "딥러닝 파이토치 교과서 정규 스터디 발표자료" },
+        en: { title: "Ch. 3 · Core Machine Learning Algorithms", desc: "Deep Learning with PyTorch — study group presentation" }
+      }
+    ]
   }
 ];
+
+// 펼쳐 놓은 그룹은 언어를 바꿔도 그대로 유지됩니다.
+const openStudyGroups = new Set();
+
+const CHEVRON_SVG = '<svg viewBox="0 0 24 24"><path d="M8.6 4.6 16 12l-7.4 7.4L7.2 18l6-6-6-6 1.4-1.4z"/></svg>';
+const EXTERNAL_SVG = '<svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>';
 
 function renderStudy() {
   const list = document.getElementById('studyList');
   if (!list) return;
-  const viewLabel = I18N[lang].st_view;
-  list.innerHTML = STUDY_MATERIALS.map(m => {
-    const d = m[lang] || m.ko;
-    return `<div class="study-item">
-      <div class="study-date">${m.date}</div>
-      <div class="study-body"><h3>${d.title}</h3>${d.desc ? `<p>${d.desc}</p>` : ''}</div>
-      <a class="study-link" href="${m.file}" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-        ${viewLabel}
-      </a>
+  const dict = I18N[lang];
+
+  list.innerHTML = STUDY_GROUPS.map(g => {
+    const gd = g[lang] || g.ko;
+    const open = openStudyGroups.has(g.id);
+    const items = g.items.map(m => {
+      const d = m[lang] || m.ko;
+      return `<div class="study-item">
+        <div class="study-date">${m.date}</div>
+        <div class="study-body"><h3>${d.title}</h3>${d.desc ? `<p>${d.desc}</p>` : ''}</div>
+        <a class="study-link" href="${m.file}" target="_blank" rel="noopener">${EXTERNAL_SVG}${dict.st_view}</a>
+      </div>`;
+    }).join('');
+
+    return `<div class="study-group" data-open="${open}" data-group="${g.id}">
+      <button class="study-group-head" type="button" aria-expanded="${open}" aria-controls="sg-${g.id}">
+        <span class="sg-chevron">${CHEVRON_SVG}</span>
+        <span class="sg-titles">
+          <span class="sg-title">${gd.title}</span>
+          <span class="sg-desc">${gd.desc}</span>
+        </span>
+        <span class="sg-count">${g.items.length}${dict.st_count}</span>
+      </button>
+      <div class="study-group-body" id="sg-${g.id}">
+        <div class="sg-inner"><div class="sg-items">${items}</div></div>
+      </div>
     </div>`;
   }).join('');
+
+  list.querySelectorAll('.study-group-head').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.closest('.study-group');
+      const id = group.dataset.group;
+      const next = group.dataset.open !== 'true';
+      group.dataset.open = String(next);
+      btn.setAttribute('aria-expanded', String(next));
+      if (next) openStudyGroups.add(id); else openStudyGroups.delete(id);
+    });
+  });
 }
 
 // ===== i18n =====
 const I18N = {
   ko: {
     nav_research: "연구 분야", nav_history: "이력", nav_projects: "프로젝트", nav_pubs: "논문", nav_study: "스터디", nav_contact: "연락처",
-    st_title: "스터디 자료", st_note: "스터디 모임에서 발표한 자료를 정리해 올립니다.", st_view: "PDF 보기",
+    st_title: "스터디 자료", st_note: "스터디별로 발표 자료를 모아 두었습니다. 제목을 누르면 목록이 펼쳐집니다.", st_view: "PDF 보기", st_count: "개 자료",
     hero_name: "최민혁", hero_role: "기계공학과 학부연구생 · IDEA Lab", hero_univ: "한양대학교 ERICA캠퍼스 기계공학과",
     aff_lab_k: "소속 연구실", aff_lab_v: "IDEA Lab (Intelligent Design for Engineering Applications Lab)",
     aff_univ_k: "소속", aff_univ_v: "한양대학교 ERICA캠퍼스 · 기계공학과 학부연구생",
     aff_prof_k: "지도교수", aff_prof_v: "양선웅 교수님",
     aff_mail_k: "이메일",
-    hero_interest_label: "관심 분야", hero_interest_tag: "방산 (국방산업)", hero_scroll: "↓ 스크롤하여 더 알아보기",
+    hero_interest_label: "관심 분야", hero_interest_tag: "방산 (국방산업)",
     exp_title: "연구 분야",
     exp1_title: "AI 에이전트 기반 설계 자동화",
     exp1_desc: "대형 언어 모델(LLM) 기반 에이전트가 설계 요구조건 해석부터 형상 제안, 검토까지의 과정을 스스로 수행하도록 하는 방법을 공부하고 있습니다. 현재 IDEA Lab에서 진행 중인 주 관심 주제입니다.",
@@ -607,20 +760,22 @@ const I18N = {
     exp2_desc: "임무 요구조건에 맞는 드론의 형상과 구성을 LLM 에이전트가 제안하고 스스로 검토하도록 하는, 설계 자동화 연구를 적용하는 대상 시스템으로 드론을 다루고 있습니다.",
     exp3_title: "기계 설계 · 해석 (CAD / CAE)",
     exp3_desc: "3D 모델링과 구조·유동 해석을 통해 설계안을 직접 만들고 검토하는 역량을 쌓고 있습니다.",
-    chip_title: "Keywords:", chip_title2: "Keywords:", chip_title3: "Keywords:",
+    chip_title: "Keywords", chip_title2: "Keywords", chip_title3: "Keywords",
     chip1a: "LLM Agent", chip1b: "설계 자동화", chip1c: "Python",
     chip2a: "LLM Agent", chip2b: "드론 설계", chip2c: "형상 설계",
     chip3a: "3D CAD", chip3b: "구조 해석", chip3c: "유동 해석",
     tl_title: "이력",
     tl1_date: "2022.03 - 2028.02", tl1_title: "한양대학교 ERICA캠퍼스 · 기계공학과",
     tl1_desc: "학사 과정 재학 중.",
+    tl2_date: "2019.03 - 2022.02", tl2_title: "강릉고등학교",
+    tl2_desc: "2019년 3월 입학 · 2022년 2월 졸업.",
     pj_title: "연구 및 프로젝트",
     pj1_title: "AI 에이전트 기반 드론 설계 자동화",
     pj1_desc: "LLM 에이전트가 임무 요구조건을 입력받아 드론의 형상과 구성을 제안하고, 그 결과를 스스로 검토하도록 하는 설계 자동화 파이프라인을 IDEA Lab에서 연구하고 있습니다. 상세 내용과 결과는 진행에 따라 업데이트할 예정입니다.",
     pj1_status: "진행 중",
     pj2_title: "딥러닝 기초 스터디 · 발표",
     pj2_desc: "『딥러닝 파이토치 교과서』를 교재로 하는 정규 스터디에 참여해 머신러닝 핵심 알고리즘, 합성곱 신경망 등의 주제를 직접 정리하고 발표했습니다. 발표 자료는 아래 스터디 자료 섹션에서 볼 수 있습니다.",
-    pj2_status: "진행 중",
+    pj2_status: "완료",
     pub_title: "논문 및 발표",
     pub1_year: "연도", pub1_title: "논문 및 발표 실적은 업데이트 예정입니다.", pub1_desc: "저자 · 학회/저널명 업데이트 예정",
     ct_title: "연락하기", ct_note: "연구 협업, 프로젝트, 기타 문의는 아래 이메일로 연락 주세요.",
@@ -628,13 +783,13 @@ const I18N = {
   },
   en: {
     nav_research: "Research", nav_history: "History", nav_projects: "Projects", nav_pubs: "Publications", nav_study: "Study", nav_contact: "Contact",
-    st_title: "Study Materials", st_note: "Presentation materials from my study group, updated regularly.", st_view: "View PDF",
+    st_title: "Study Materials", st_note: "Presentation materials grouped by study. Click a title to expand the list.", st_view: "View PDF", st_count: " items",
     hero_name: "Minhyeok Choi", hero_role: "Undergraduate Researcher, Mechanical Engineering · IDEA Lab", hero_univ: "Dept. of Mechanical Engineering, Hanyang University ERICA",
     aff_lab_k: "Lab", aff_lab_v: "IDEA Lab (Intelligent Design for Engineering Applications Lab)",
     aff_univ_k: "Affiliation", aff_univ_v: "Undergraduate Researcher · Dept. of Mechanical Engineering, Hanyang University ERICA",
     aff_prof_k: "Advisor", aff_prof_v: "Prof. Sunwoong Yang",
     aff_mail_k: "Email",
-    hero_interest_label: "Research Interest", hero_interest_tag: "Defense Industry", hero_scroll: "↓ Scroll to explore",
+    hero_interest_label: "Research Interest", hero_interest_tag: "Defense Industry",
     exp_title: "Research Areas",
     exp1_title: "AI Agent-Based Design Automation",
     exp1_desc: "Studying how LLM-based agents can carry out the design process on their own — from interpreting requirements to proposing and reviewing configurations. This is my main topic at IDEA Lab.",
@@ -642,20 +797,22 @@ const I18N = {
     exp2_desc: "Applying design-automation research to drones as the target system — an LLM agent proposes drone configurations that meet mission requirements and reviews its own results.",
     exp3_title: "Mechanical Design & Analysis (CAD / CAE)",
     exp3_desc: "Building hands-on skills in 3D modeling and in structural and flow analysis to create and evaluate designs myself.",
-    chip_title: "Keywords:", chip_title2: "Keywords:", chip_title3: "Keywords:",
+    chip_title: "Keywords", chip_title2: "Keywords", chip_title3: "Keywords",
     chip1a: "LLM Agent", chip1b: "Design Automation", chip1c: "Python",
     chip2a: "LLM Agent", chip2b: "Drone Design", chip2c: "Configuration Design",
     chip3a: "3D CAD", chip3b: "Structural Analysis", chip3c: "Flow Analysis",
     tl_title: "History",
     tl1_date: "Mar 2022 - Feb 2028", tl1_title: "Hanyang University ERICA · Mechanical Engineering",
     tl1_desc: "Currently enrolled in the B.S. program.",
+    tl2_date: "Mar 2019 - Feb 2022", tl2_title: "Gangneung High School",
+    tl2_desc: "Enrolled Mar 2019 · Graduated Feb 2022.",
     pj_title: "Research & Projects",
     pj1_title: "AI Agent-Based Drone Design Automation",
     pj1_desc: "Researching a design-automation pipeline at IDEA Lab in which an LLM agent takes mission requirements as input, proposes a drone configuration, and reviews its own result. Details and outcomes will be updated as the work progresses.",
     pj1_status: "In progress",
     pj2_title: "Deep Learning Study Group · Presentations",
     pj2_desc: "Participated in a regular study group using \"Deep Learning with PyTorch,\" preparing and presenting topics such as core machine learning algorithms and convolutional neural networks. Slides are available in the Study Materials section below.",
-    pj2_status: "In progress",
+    pj2_status: "Completed",
     pub_title: "Publications & Presentations",
     pub1_year: "Year", pub1_title: "Publications will be updated soon.", pub1_desc: "Authors · venue to be updated",
     ct_title: "Get In Touch", ct_note: "For research collaboration, projects, or any inquiries, feel free to reach out via email.",
